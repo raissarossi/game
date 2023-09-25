@@ -4,7 +4,6 @@ import Place from "@/components/place";
 import Image from "next/image";
 import niveisTitle from "../../components/niveis.png";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function Page() {
   const router = useRouter();
@@ -21,14 +20,14 @@ export default function Page() {
   };
 
   const buttons = [
-    { mt: 96 },
-    { mt: 40 },
-    { mt: 60 },
-    { mt: 20 },
-    { mt: 80 },
-    { mt: 40 },
-    { mt: 60 },
-    { mt: 0 },
+    { mt: 'lg:mt-96' },
+    { mt: 'lg:mt-40' },
+    { mt: 'lg:mt-60' },
+    { mt: 'lg:mt-20' },
+    { mt: 'lg:mt-80' },
+    { mt: 'lg:mt-40' },
+    { mt: 'lg:mt-60' },
+    { mt: 'lg:mt-0 '},
   ];
 
   const routes = [
@@ -56,22 +55,22 @@ export default function Page() {
           {buttons.map((button, index) => (
             <button
               key={index}
-              className={`lg:mt-${button.mt}`}
+              className={`${button.mt}`}
               onClick={() => handleButtonClick(index)}
             >
               <Place gabHere={activeButton === index} className={""} />
             </button>
           ))}
           <svg className="absolute -z-10 top-0 left-0 w-full h-full visible lg:invisible">
-          <line
-            x1="50%"
-            y1="10%"
-            x2="50%"
-            y2="100%"
-            stroke="white"
-            strokeWidth="6"
-          />
-        </svg>
+            <line
+              x1="50%"
+              y1="10%"
+              x2="50%"
+              y2="100%"
+              stroke="white"
+              strokeWidth="6"
+            />
+          </svg>
         </div>
         <svg className="absolute z-10 top-0 left-0 w-full h-full invisible lg:visible">
           {/* 1-2 */}
@@ -163,7 +162,7 @@ export default function Page() {
           <line
             x1="70%"
             y1="49.3%"
-            x2="81%"
+            x2="81.1%"
             y2="49.3%"
             stroke="white"
             strokeWidth="6"
@@ -194,7 +193,6 @@ export default function Page() {
             strokeWidth="6"
           />
         </svg>
-        
       </div>
     </>
   );
