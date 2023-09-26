@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 .bg-custom{
-    background-image: url('../components/background.png');
+    background-image: url('../images/background.png');
     background-size: cover;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import question from "../../components/question.png";
+import question from "../../images/question.png";
 
 export default function page() {
   return (

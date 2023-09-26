@@ -1,7 +1,7 @@
 //fazer componente com o place vaazio e place com o bonequinho
 import React from 'react'
-import imagePlace from "../components/place.png";
-import imageJumpPlace from "../components/jumpPlace.gif";
+import imagePlace from "../images/place.png";
+import imageJumpPlace from "../images/jumpPlace.gif";
 import Image from 'next/image';
 
 export default function Place({gabHere, className} : PlaceProps) {

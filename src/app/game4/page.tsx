@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import niveis from "../../components/niveis.png";
+import niveis from "../../images/niveis.png";
 
 export default function Page() {
   const [imageList, setImageList] = useState<string[]>([]); // Inicializa a lista de imagens vazia

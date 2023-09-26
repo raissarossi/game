@@ -2,9 +2,9 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import nao from "../../components/nao.png";
-import sim from "../../components/sim.png";
-import question from "../../components/question.png";
+import nao from "../../images/naoimg.png";
+import sim from "../../images/simimg.png";
+import question from "../../images/question.png";
 
 const ButtonWithRandomMovement: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });

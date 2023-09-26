@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Place from "@/components/place";
 import Image from "next/image";
-import niveisTitle from "../../components/niveis.png";
+import niveisTitle from "../../images/niveis.png";
 import { useRouter } from "next/navigation";
 
 export default function Page() {

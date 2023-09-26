@@ -1,115 +1,147 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
+import Image from "next/image";
+import enterTitle from "../images/entrarJogo.png";
+import enter from "../images/entrarW.png";
+import InputC from "../components/inputC";
 
-const ButtonWithRandomMovement: React.FC = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isMouseNear, setIsMouseNear] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-
-      const buttonX = position.x;
-      const buttonY = position.y;
-
-      // Calcula a distância entre o mouse e o botão
-      const distance = Math.sqrt(
-        Math.pow(mouseX - buttonX, 2) + Math.pow(mouseY - buttonY, 2)
-      );
-
-      // Se o mouse estiver perto do botão (defina a distância desejada)
-      const isNear = distance < 100;
-
-      setIsMouseNear(isNear);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [position]);
-
-  useEffect(() => {
-    // Move o botão para uma posição aleatória quando ele é montado
-    const randomPosition = () => {
-      const maxX = window.innerWidth - 100; // Largura da tela - largura do botão
-      const maxY = window.innerHeight - 100; // Altura da tela - altura do botão
-
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
-
-      setPosition({ x: newX, y: newY });
-    };
-
-    randomPosition();
-
-    // // Configura um intervalo para mover o botão a cada 1 segundo
-    const interval = setInterval(() => {
-      randomPosition();
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Move o botão para uma posição aleatória sempre que o mouse se aproximar
-    if (isMouseNear) {
-      const randomPosition = () => {
-        const maxX = window.innerWidth - 100;
-        const maxY = window.innerHeight - 100;
-
-        const newX = Math.random() * maxX;
-        const newY = Math.random() * maxY;
-
-        setPosition({ x: newX, y: newY });
-      };
-
-      randomPosition();
+export default function page() {
+  const router = useRouter();
+  const [user, setUser] = useState({ user: "", password: "" });
+  function Verify() {
+    if (user.user == "raissa" || user.user == "gabriel") {
+      if (user.password == "020923") {
+        router.push("/game");
+      } else {
+        setUser({ user: user.user, password: "" });
+        Swal.fire({
+          icon: "error",
+          iconColor: "#2EBDD3",
+          title: "Erro",
+          text: "Senha incorreta, vai tentando ai!",
+          confirmButtonColor: "#2EBDD3",
+        });
+      }
     }
-  }, [isMouseNear]);
-
-  function AlertWrongButton() {
-    Swal.fire({
-      icon: "error",
-      iconColor: "#2EBDD3",
-      title: "Erro",
-      text: "Erro ao processar sua resposta, por favor tente novamente!",
-      confirmButtonColor: "#2EBDD3",
-    });
+    else if(user.user == "" || user.password == "") {
+      setUser({ user: "", password: "" });
+      Swal.fire({
+        icon: "error",
+        iconColor: "#2EBDD3",
+        title: "Erro",
+        text: "Preencha todos os campos!",
+        confirmButtonColor: "#2EBDD3",
+      });
+    }
+     else {
+      setUser({ user: "", password: "" });
+      Swal.fire({
+        icon: "error",
+        iconColor: "#2EBDD3",
+        title: "Erro",
+        text: "Usuário ou senha incorretos, vai tentando ai!",
+        confirmButtonColor: "#2EBDD3",
+      });
+    }
   }
-  function AlertRightButton() {
-    Swal.fire({
-      icon: "success",
-      iconColor: "#2EBDD3",
-      title: "Sucesso",
-      text: "Sua resposta foi registrada com sucesso",
-      confirmButtonColor: "#2EBDD3",
-    });
-  }
-
+  
   return (
-    <div className="flex justify-center items-center gap-10 h-screen w-full flex-col">
-        <h1>laalalalallalalallalalalala</h1>
-        <button className="p-2 bg-[#2EBDD3] hover:bg-[#0e535e] rounded-xl" onClick={AlertRightButton}>Click me</button>
+    <div className="flex justify-center items-center h-screen bg-custom">
+      <div className="flex flex-col items-center gap-10 absolute z-20">
+        <Image src={enterTitle} alt="Entrar no jogo" width={250} height={250} />
+        <InputC
+          type="text"
+          placeholder="usuário"
+          value={user.user}
+          onChange={(event) => {
+            setUser({ ...user, user: event.target.value.toLowerCase() });
+          }}
+        ></InputC>
+        <InputC
+          type="password"
+          placeholder="senha"
+          value={user.password}
+          onChange={(event) => {
+            setUser({ ...user, password: event.target.value });
+          }}
+        ></InputC>
         <button
-            style={{
-              position: 'absolute',
-              top: `${position.y}px`,
-              left: `${position.x}px`,
-              transition: '0.5s',
-            }}
-            className="p-2 rounded-xl bg-[#2EBDD3]"
-          onClick={AlertWrongButton}
+          onClick={Verify}
+          className="hover:translate-y-1"
         >
-          Click me
+          <Image src={enter} alt="Entrar no jogo" width={100} height={100} />
         </button>
+      </div>
+      <svg className="absolute z-10 top-0 left-0 w-full h-full invisible lg:visible">
+        <line
+          x1="40%"
+          y1="30%"
+          x2="60%"
+          y2="30%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="40%"
+          y1="70%"
+          x2="60%"
+          y2="70%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="39.8%"
+          y1="30.4%"
+          x2="39.8%"
+          y2="69.6%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="60.2%"
+          y1="30.4%"
+          x2="60.2%"
+          y2="69.6%"
+          stroke="white"
+          strokeWidth="8"
+        />
+      </svg>
+      <svg className="absolute z-10 top-0 left-0 w-full h-full lg:invisible">
+        <line
+          x1="12%"
+          y1="29%"
+          x2="88%"
+          y2="29%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="12%"
+          y1="71%"
+          x2="88%"
+          y2="71%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="11%"
+          y1="29.5%"
+          x2="11%"
+          y2="70.6%"
+          stroke="white"
+          strokeWidth="8"
+        />
+        <line
+          x1="89%"
+          y1="29.5%"
+          x2="89%"
+          y2="70.6%"
+          stroke="white"
+          strokeWidth="8"
+        />
+      </svg>
     </div>
   );
-};
-
-export default ButtonWithRandomMovement;
+}
