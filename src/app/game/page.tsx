@@ -46,7 +46,7 @@ export default function Page() {
         <div className="pt-32 w-full flex justify-center">
           <Image
             src={niveisTitle}
-            alt="Gabriel Jump GIF"
+            
             width={250}
             height={250}
           />

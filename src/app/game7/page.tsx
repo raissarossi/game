@@ -6,7 +6,7 @@ export default function page() {
   return (
     <div>
       text
-      {/* <Image src={question} alt="Gabriel Jump GIF" width={600} height={600} /> */}
+      {/* <Image src={question}  width={600} height={600} /> */}
     </div>
   );
 }

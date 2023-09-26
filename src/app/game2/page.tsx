@@ -1,10 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
-import naoImg from "../../images/naoimg.png";
-import simImg from "../../images/simimg.png";
 import Swal from "sweetalert2";
+import simImg from "../../images/simimg.png";
 import simGif from "../../images/simGif.gif";
+import naoImg from "../../images/naoimg.png";
 import naoGif from "../../images/naoGif.gif";
 
 export default function Quiz() {
@@ -19,7 +19,6 @@ export default function Quiz() {
     { question: 'Pergunta 8', answer: 'nao' },
     { question: 'Pergunta 9', answer: 'sim' },
     { question: 'Pergunta 10', answer: 'nao' },
-    // Adicione mais perguntas e respostas aqui
   ]);
 
   const [currentQuestion, setCurrentQuestion] = useState(null);
