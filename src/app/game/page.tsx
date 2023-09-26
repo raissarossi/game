@@ -46,7 +46,6 @@ export default function Page() {
         <div className="pt-32 w-full flex justify-center">
           <Image
             src={niveisTitle}
-            
             width={250}
             height={250}
           />

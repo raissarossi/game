@@ -4,6 +4,7 @@ import Image from "next/image";
 import niveis from "../../images/niveis.png";
 import resposta from "../../images/resposta.png";
 import game1 from "../../images/findErrors/correct1.jpg";
+import title from "../../images/encontrarErros.png";
 
 export default function Page() {
   const [imageList, setImageList] = useState<string[]>([]); // Inicializa a lista de imagens vazia
@@ -35,7 +36,6 @@ export default function Page() {
   ];
 
   const [imgAnswer, setImgAnswer] = useState(false);
-  // Função para atualizar a lista de imagens com base no botão pressionado
   const handleButtonClick = (buttonIndex: number) => {
     setImgAnswer(false);
     setImageList(imageLists[buttonIndex]);
@@ -43,63 +43,61 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full bg-custom h-screen lg:h-screen flex flex-col justify-center gap-10">
-      <div className="flex justify-center flex-wrap gap-10 p-6">
+    <div className="w-full bg-custom min-h-screen lg:h-screen flex flex-col items-center justify-center gap-10 p-10">
+          <Image
+            src={title}
+            className="lg:max-w-lg"
+          />
+      <div className="flex justify-center flex-wrap gap-6 p-6 lg:gap-14">
         <button onClick={() => handleButtonClick(0)}>
           <Image
             src={game1}
-            width={100}
-            height={100}
-            className="opacity-20 hover:opacity-90 rounded-full"
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
         <button onClick={() => handleButtonClick(1)}>
           <Image
             src={game1}
-            width={100}
-            height={100}
-            className="opacity-20 hover:opacity-90 rounded-full"
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
         <button onClick={() => handleButtonClick(2)}>
           <Image
             src={game1}
-            width={100}
-            height={100}
-            className="opacity-20 hover:opacity-90 rounded-full"
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
         <button onClick={() => handleButtonClick(3)}>
           <Image
             src={game1}
-            width={100}
-            height={100}
-            className="opacity-20 hover:opacity-90 rounded-full"
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
       </div>
-      <div className="flex opacity-25">
+      <div className="opacity-25">
         {imageList.map((imageUrl, index) => (
-          <div className={"flex gap-10 w-full justify-center"}>
+          <div
+            className={"flex flex-col lg:flex-row gap-10 w-full justify-center"}
+          >
             <Image
               key={index}
               src={imageUrl.image}
               alt={`Image ${index}`}
-              className="bg-pink-300 w-64 lg:w-3/12"
+              className="w-56 lg:w-1/5"
             />
             {imgAnswer == true ? (
               <Image
                 key={index}
                 src={imageUrl.answer}
                 alt={`Image ${index}`}
-                className="bg-pink-300 w-64 lg:w-3/12"
+                className="w-56 lg:w-1/5"
               />
             ) : (
               <Image
                 key={index}
                 src={imageUrl.error}
                 alt={`Image ${index}`}
-                className="bg-pink-300 w-64 lg:w-3/12"
+                className="w-56 lg:w-1/5"
               />
             )}
           </div>
@@ -110,7 +108,7 @@ export default function Page() {
           src={resposta}
           width={200}
           height={200}
-          className="opacity-10 hover:opacity-90"
+          className="opacity-10 hover:opacity-90 "
         />
       </button>
     </div>
