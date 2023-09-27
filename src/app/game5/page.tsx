@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from "react";
 import Image from "next/image";
-import cofreImg from "../../images/cofre.png";
-import cofreGif from "../../images/cofre.gif";
-import abraCofre from "../../images/abraCofre.png";
-import verificarButton from '../../images/Verificar.png'
+import cofreImg from "./../../images/cofre.png";
+import cofreGif from "./../../images/cofre.gif";
+import abraCofre from "./../../images/abraCofre.png";
+import verificarButton from './../../images/Verificar.png'
 import Swal from "sweetalert2";
 
 export default function Page() {
@@ -18,15 +18,15 @@ export default function Page() {
   // 2608 - my house
   // 2708 - his house
   const [questions, setQuestions] = useState<Question[]>([
-    { question: require("../../images/cofreGame/6.png"), answer: '6' }, //ok
-    { question: require("../../images/cofreGame/9.png"), answer: '12' },//
-    { question: require("../../images/cofreGame/26.png"), answer: '26' },//ok
-    { question: require("../../images/cofreGame/27.png"), answer: '27' },//ok
-    { question: require("../../images/cofreGame/9.png"), answer: '8' },//
-    { question: require("../../images/cofreGame/9.png"), answer: '2' },//
-    { question: require("../../images/cofreGame/9.png"), answer: '9' },//ok
-    { question: require("../../images/cofreGame/2023.png"), answer: '2023' },//ok
-    { question: require("../../images/cofreGame/9.png"), answer: "resposta" },//
+    { question: require("./../../images/cofreGame/6.png"), answer: '6' }, //ok
+    { question: require("./../../images/cofreGame/9.png"), answer: '12' },//
+    { question: require("./../../images/cofreGame/26.png"), answer: '26' },//ok
+    { question: require("./../../images/cofreGame/27.png"), answer: '27' },//ok
+    { question: require("./../../images/cofreGame/9.png"), answer: '8' },//
+    { question: require("./../../images/cofreGame/9.png"), answer: '2' },//
+    { question: require("./../../images/cofreGame/9.png"), answer: '9' },//ok
+    { question: require("./../../images/cofreGame/2023.png"), answer: '2023' },//ok
+    { question: require("./../../images/cofreGame/9.png"), answer: "resposta" },//
   ]);
 
   const [resposta, setResposta] = useState("");

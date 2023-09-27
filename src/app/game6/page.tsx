@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import resposta from "../../images/resposta.png";
-import game1 from "../../images/findErrors/correct1.jpg";
-import title from "../../images/encontrarErros.png";
+import resposta from "./../../images/resposta.png";
+import game1 from "./../../images/findErrors/correct1.jpg";
+import title from "./../../images/encontrarErros.png";
 
 export default function Page() {
   const [imageList, setImageList] = useState<any[]>([]); // Inicializa a lista de imagens vazia
@@ -13,24 +13,24 @@ export default function Page() {
   const imageLists: any[] = [
       [
         {
-        correct: require("../../images/findErrors/correct1.jpg"),
-        error: require("../../images/findErrors/error1.jpeg"),
-        answer: require("../../images/findErrors/answer1.jpeg"),
+        correct: require("./../../images/findErrors/correct1.jpg"),
+        error: require("./../../images/findErrors/error1.jpeg"),
+        answer: require("./../../images/findErrors/answer1.jpeg"),
       }
     ],
     ,
     [
       {
-        correct: require("../../images/findErrors/correct2.jpg"),
-        error: require("../../images/findErrors/error2.jpeg"),
-        answer: require("../../images/findErrors/answer2.jpeg"),
+        correct: require("./../../images/findErrors/correct2.jpg"),
+        error: require("./../../images/findErrors/error2.jpeg"),
+        answer: require("./../../images/findErrors/answer2.jpeg"),
       },
     ],
     [
       {
-        correct: require("../../images/findErrors/correct2.jpg"),
-        error: require("../../images/findErrors/error2.jpeg"),
-        answer: require("../../images/findErrors/answer2.jpeg"),
+        correct: require("./../../images/findErrors/correct2.jpg"),
+        error: require("./../../images/findErrors/error2.jpeg"),
+        answer: require("./../../images/findErrors/answer2.jpeg"),
       },
     ],
   ];
