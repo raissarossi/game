@@ -72,7 +72,7 @@ export default function page() {
           onClick={Verify}
           className="hover:translate-y-1"
         >
-          <Image src={enter} alt="Entrar no jogo" width={100} height={100} />
+          <Image src={enter} alt="Entrar button" width={100} height={100} className="mt-10 lg:mt-0"/>
         </button>
       </div>
       <svg className="absolute z-10 top-0 left-0 w-full h-full invisible lg:visible">
