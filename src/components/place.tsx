@@ -8,14 +8,14 @@ export default function Place({gabHere, className} : PlaceProps) {
   if(gabHere == true){
     return (
       <div className='pt-20'>
-      <Image src={imageJumpPlace}  width={150} height={150}/>
+      <Image src={imageJumpPlace}  width={150} height={150} alt=''/>
       </div>
       )
     }
     else{
       return(
         <div className={`${className}`}>
-        <Image src={imagePlace} alt="Place" width={150} height={150} />
+        <Image src={imagePlace} alt="Place" width={150} height={150}/>
         </div>
     )
   }

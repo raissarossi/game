@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
-import simImg from "../../images/simimg.png";
+import simImg from "../../images/simImg.png";
 import simGif from "../../images/simGif.gif";
-import naoImg from "../../images/naoimg.png";
+import naoImg from "../../images/naoImg.png";
 import naoGif from "../../images/naoGif.gif";
 
 export default function Quiz() {

@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import Place from "@/components/place";
 import Image from "next/image";
 import niveisTitle from "../../images/niveis.png";
-import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const router = useRouter();
   const [activeButton, setActiveButton] = useState<number | null>(null);
 
   const handleButtonClick = (buttonIndex: number) => {

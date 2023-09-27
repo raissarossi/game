@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import niveis from "../../images/niveis.png";
 import resposta from "../../images/resposta.png";
 import game1 from "../../images/findErrors/correct1.jpg";
 import title from "../../images/encontrarErros.png";
@@ -15,23 +14,23 @@ export default function Page() {
       [
         {
         correct: require("../../images/findErrors/correct1.jpg"),
-        error: require("../../images/findErrors/error1.JPEG"),
-        answer: require("../../images/findErrors/answer1.JPEG"),
+        error: require("../../images/findErrors/error1.jpeg"),
+        answer: require("../../images/findErrors/answer1.jpeg"),
       }
     ],
     ,
     [
       {
         correct: require("../../images/findErrors/correct2.jpg"),
-        error: require("../../images/findErrors/error2.JPEG"),
-        answer: require("../../images/findErrors/answer2.JPEG"),
+        error: require("../../images/findErrors/error2.jpeg"),
+        answer: require("../../images/findErrors/answer2.jpeg"),
       },
     ],
     [
       {
         correct: require("../../images/findErrors/correct2.jpg"),
-        error: require("../../images/findErrors/error2.JPEG"),
-        answer: require("../../images/findErrors/answer2.JPEG"),
+        error: require("../../images/findErrors/error2.jpeg"),
+        answer: require("../../images/findErrors/answer2.jpeg"),
       },
     ],
   ];
