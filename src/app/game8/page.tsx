@@ -5,7 +5,7 @@ import question from "../../images/question.png";
 export default function page() {
   return (
     <div>
-      photos
+      texto
       {/* <Image src={question}  width={600} height={600} /> */}
     </div>
   );

@@ -12,7 +12,7 @@ export default function page() {
   function Verify() {
     if (user.user == "raissa" || user.user == "gabriel") {
       if (user.password == "020923") {
-        router.push("/game");
+        router.push("/games");
       } else {
         setUser({ user: user.user, password: "" });
         Swal.fire({
