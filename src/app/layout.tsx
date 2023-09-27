@@ -1,10 +1,10 @@
-'use client' 
+// 'use client' 
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Image from "next/image";
-import home from "../images/home.svg"
-import { useRouter } from "next/navigation";
+// import Image from "next/image";
+// import home from "../images/home.svg"
+// import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,13 +18,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <button className='absolute top-5 right-2 lg:left-5 hover:translate-y-1' onClick={()=>router.push("/games")}>
+        {/* <button className='absolute top-5 right-2 lg:left-5 hover:translate-y-1' onClick={()=>router.push("/games")}>
           <Image src={home} alt='' className='w-16 lg:w-24'/>
-        </button>
+        </button> */}
         {children}</body>
     </html>
   )
