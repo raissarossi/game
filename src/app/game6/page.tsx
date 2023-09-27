@@ -14,23 +14,23 @@ export default function Page() {
       [
         {
         correct: require("./../../images/findErrors/correct1.jpg"),
-        error: require("./../../images/findErrors/error1.jpeg"),
-        answer: require("./../../images/findErrors/answer1.jpeg"),
+        error: require("./../../images/findErrors/error1.png"),
+        answer: require("./../../images/findErrors/answer1.png"),
       }
     ],
     ,
     [
       {
         correct: require("./../../images/findErrors/correct2.jpg"),
-        error: require("./../../images/findErrors/error2.jpeg"),
-        answer: require("./../../images/findErrors/answer2.jpeg"),
+        error: require("./../../images/findErrors/error2.png"),
+        answer: require("./../../images/findErrors/answer2.png"),
       },
     ],
     [
       {
         correct: require("./../../images/findErrors/correct2.jpg"),
-        error: require("./../../images/findErrors/error2.jpeg"),
-        answer: require("./../../images/findErrors/answer2.jpeg"),
+        error: require("./../../images/findErrors/error2.png"),
+        answer: require("./../../images/findErrors/answer2.png"),
       },
     ],
   ];
