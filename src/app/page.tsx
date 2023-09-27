@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import enterTitle from "../images/entrarJogo.png";
 import enter from "../images/entrarW.png";
-import InputC from "../components/inputC";
 
 export default function page() {
   const router = useRouter();
@@ -51,22 +50,24 @@ export default function page() {
     <div className="flex justify-center items-center h-screen bg-custom">
       <div className="flex flex-col items-center gap-10 absolute z-20">
         <Image src={enterTitle} alt="Entrar no jogo" width={250} height={250} />
-        <InputC
+        <input
           type="text"
           placeholder="usuário"
           value={user.user}
           onChange={(event) => {
             setUser({ ...user, user: event.target.value.toLowerCase() });
           }}
-        ></InputC>
-        <InputC
+          className="p-2"
+          ></input>
+        <input
           type="password"
           placeholder="senha"
           value={user.password}
           onChange={(event) => {
             setUser({ ...user, password: event.target.value });
           }}
-        ></InputC>
+          className="p-2"
+        ></input>
         <button
           onClick={Verify}
           className="hover:translate-y-1"

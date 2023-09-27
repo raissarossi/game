@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import question from "../../images/question.png";
 import simImg from "../../images/simimg.png";
 import simGif from "../../images/simGif.gif";
 import nao from "../../images/naoimg.png";
@@ -23,28 +22,30 @@ const ButtonWithRandomMovement: React.FC = () => {
     "Pergunta 9",
     "Pergunta 10",
   ]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [sim, setSim] = useState(simImg);
+  const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
+const [sim, setSim] = useState(simImg);
 
-  useEffect(() => {
-    // Quando o componente for montado, sorteie a primeira pergunta
-    selectRandomQuestion();
-  }, []);
+useEffect(() => {
+  // Quando o componente for montado, sorteie a primeira pergunta
+  selectRandomQuestion();
+}, []);
 
-  const selectRandomQuestion = () => {
-    // Verifique se ainda há perguntas não respondidas
-    const unansweredQuestions = questions.filter((q) => q !== currentQuestion);
-    if (unansweredQuestions.length === 0) {
-      alert("Quiz concluído!");
-      return;
-    }
+const selectRandomQuestion = () => {
+  // Filtra perguntas que já foram respondidas ou que são nulas
+  const unansweredQuestions = questions.filter((q) => q !== currentQuestion && q !== null);
 
-    // Sorteie uma pergunta aleatória das não respondidas
-    const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
-    const newQuestion = unansweredQuestions[randomIndex];
+  if (unansweredQuestions.length === 0) {
+    alert("Quiz concluído!");
+    return;
+  }
 
-    setCurrentQuestion(newQuestion);
-  };
+  // Sorteia uma pergunta aleatória das não respondidas
+  const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
+  const newQuestion = unansweredQuestions[randomIndex];
+
+  setCurrentQuestion(newQuestion);
+};
+
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -136,7 +137,7 @@ const ButtonWithRandomMovement: React.FC = () => {
         {currentQuestion}
       </h1>
       <button onClick={AlertRightButton}>
-        <Image src={sim}  width={150} height={150} />
+        <Image src={sim} alt="" width={150} height={150} />
       </button>
       <button
         style={{
@@ -147,7 +148,7 @@ const ButtonWithRandomMovement: React.FC = () => {
         }}
         onClick={AlertWrongButton}
       >
-        <Image src={nao}  width={150} height={150} />
+        <Image src={nao} alt="" width={150} height={150} />
       </button>
     </div>
   );
