@@ -52,6 +52,7 @@ export default function Page() {
             text: "Você completou todos os desafios!",
             confirmButtonColor: "#2EBDD3",
           });
+          setCurrentQuestionIndex(0)
         }
         // Limpe a resposta
         setResposta("");
