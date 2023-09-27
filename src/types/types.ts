@@ -3,3 +3,6 @@ type PlaceProps = {
     className: string;
   };
   
+  declare module "*.png"
+  declare module "*.jpeg"
+  declare module "*.gif"
