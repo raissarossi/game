@@ -1,10 +1,11 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import cofreImg from "./../../images/cofre.png";
 import cofreGif from "./../../images/cofre.gif";
 import abraCofre from "./../../images/abraCofre.png";
-import verificarButton from './../../images/Verificar.png'
+import verificarButton from "./../../images/Verificar.png";
+import respostaButton from "./../../images/resposta.png";
 import Swal from "sweetalert2";
 
 export default function Page() {
@@ -12,21 +13,24 @@ export default function Page() {
     question: any;
     answer: any;
   };
-  // equaçãozinha que resulta 
+  // equaçãozinha que resulta
   // 0608 - date
   // 1208 - kiss
   // 2608 - my house
   // 2708 - his house
   const [questions, setQuestions] = useState<Question[]>([
-    { question: require("./../../images/cofreGame/6.png"), answer: '6' }, //ok
-    { question: require("./../../images/cofreGame/9.png"), answer: '12' },//
-    { question: require("./../../images/cofreGame/26.png"), answer: '26' },//ok
-    { question: require("./../../images/cofreGame/27.png"), answer: '27' },//ok
-    { question: require("./../../images/cofreGame/9.png"), answer: '8' },//
-    { question: require("./../../images/cofreGame/9.png"), answer: '2' },//
-    { question: require("./../../images/cofreGame/9.png"), answer: '9' },//ok
-    { question: require("./../../images/cofreGame/2023.png"), answer: '2023' },//ok
-    { question: require("./../../images/cofreGame/9.png"), answer: "resposta" },//
+    {
+      question: require("./../../images/cofreGame/perguntaFinal.png"),
+      answer: "nossas datas",
+    }, //ok
+    { question: require("./../../images/cofreGame/6.png"), answer: "6" }, //ok
+    { question: require("./../../images/cofreGame/12.png"), answer: "12" }, //ok
+    { question: require("./../../images/cofreGame/26.png"), answer: "26" }, //ok
+    { question: require("./../../images/cofreGame/27.png"), answer: "27" }, //ok
+    { question: require("./../../images/cofreGame/8.png"), answer: "8" }, //ok
+    { question: require("./../../images/cofreGame/2.png"), answer: "2" }, //ok
+    { question: require("./../../images/cofreGame/9.png"), answer: "9" }, //ok
+    { question: require("./../../images/cofreGame/2023.png"), answer: "2023" }, //ok
   ]);
 
   const [resposta, setResposta] = useState("");
@@ -52,7 +56,7 @@ export default function Page() {
             text: "Você completou todos os desafios!",
             confirmButtonColor: "#2EBDD3",
           });
-          setCurrentQuestionIndex(0)
+          setCurrentQuestionIndex(0);
         }
         // Limpe a resposta
         setResposta("");
@@ -80,10 +84,10 @@ export default function Page() {
             <Image src={cofreImg} alt="" className="w-full lg:w-96" />
           )}
           <Image
-              src={currentQuestion.question}
-              alt={'image'}
-              className="w-52 lg:w-96"
-            />
+            src={currentQuestion.question}
+            alt={"image"}
+            className="w-52 lg:w-96"
+          />
         </div>
       )}
       <input
@@ -97,10 +101,17 @@ export default function Page() {
       />
       <button className="" onClick={handleAnswer}>
         <Image
-            src={verificarButton}
-            alt=""
+          src={verificarButton}
+          alt=""
           className="w-52 lg:w-56 hover:translate-y-1 mt-5 lg:mt-10"
-          />
+        />
+      </button>
+      <button className="" onClick={handleAnswer}>
+        <Image
+          src={respostaButton}
+          alt=""
+          className="w-32 lg:w-36 hover:translate-y-1 mt-6 lg:mt-10"
+        />
       </button>
     </div>
   );
