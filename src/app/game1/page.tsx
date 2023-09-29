@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
-import simImg from "./../../images/simImg.png";
-import simGif from "./../../images/simGif.gif";
-import naoImg from "./../../images/naoImg.png";
-import naoGif from "./../../images/naoGif.gif";
+import simImg from "./../../images/buttons/simImg.png";
+import simGif from "./../../images/buttons/simGif.gif";
+import naoImg from "./../../images/buttons/naoImg.png";
+import naoGif from "./../../images/buttons/naoGif.gif";
 
 export default function Quiz() {
   type Question = {

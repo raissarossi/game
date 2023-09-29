@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Image from "next/image";
-import enterTitle from "../images/entrarJogo.png";
-import enter from "../images/entrarW.png";
+import enterTitle from "../images/titles/entrarJogo.png";
+import enter from "../images/buttons/entrar.png";
 
 export default function page() {
   const router = useRouter();

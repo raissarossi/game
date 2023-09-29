@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import defaultLetter from "./../../images/forca/default.png";
 import Image from "next/image";
-import forcaTitle from "./../../images/forca/forcaTitle.png";
-import verificarButton from "./../../images/Verificar.png";
-import resetButton from "./../../images/forca/resetButton.png";
+import forcaTitle from "./../../images/titles/forcaTitle.png";
+import verificarButton from "./../../images/buttons/verificar.png";
+import resetButton from "./../../images/buttons/resetButton.png";
 
 export default function ForcaGame() {
   const word = "eu  te  amo  meu principe";

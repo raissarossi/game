@@ -2,9 +2,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import resposta from "./../../images/resposta.png";
-import game1 from "./../../images/findErrors/correct1.jpg";
-import title from "./../../images/encontrarErros.png";
+import title from "./../../images/titles/findErrorsTitle.png";
+import game1 from "./../../images/findErrors/correct01.png";
+import game2 from "./../../images/findErrors/correct02.jpg";
+import game3 from "./../../images/findErrors/correct03.jpg";
+import game4 from "./../../images/findErrors/correct04.png";
+import resposta from "./../../images/buttons/resposta.png";
 
 export default function Page() {
   const [imageList, setImageList] = useState<any[]>([]); // Inicializa a lista de imagens vazia
@@ -14,24 +17,31 @@ export default function Page() {
   const imageLists: any[] = [
       [
         {
-        correct: require("./../../images/findErrors/correct1.jpg"),
-        error: require("./../../images/findErrors/error1.png"),
-        answer: require("./../../images/findErrors/answer1.png"),
+        correct: require("./../../images/findErrors/correct01.png"),
+        error: require("./../../images/findErrors/error01.png"),
+        answer: require("./../../images/findErrors/answer01.png"),
       }
     ],
     ,
     [
       {
-        correct: require("./../../images/findErrors/correct2.jpg"),
-        error: require("./../../images/findErrors/error2.png"),
-        answer: require("./../../images/findErrors/answer2.png"),
+        correct: require("./../../images/findErrors/correct02.jpg"),
+        error: require("./../../images/findErrors/error02.png"),
+        answer: require("./../../images/findErrors/answer02.png"),
       },
     ],
     [
       {
-        correct: require("./../../images/findErrors/correct2.jpg"),
-        error: require("./../../images/findErrors/error2.png"),
-        answer: require("./../../images/findErrors/answer2.png"),
+        correct: require("./../../images/findErrors/correct03.jpg"),
+        error: require("./../../images/findErrors/error03.png"),
+        answer: require("./../../images/findErrors/answer03.png"),
+      },
+    ],
+    [
+      {
+        correct: require("./../../images/findErrors/correct04.png"),
+        error: require("./../../images/findErrors/error04.png"),
+        answer: require("./../../images/findErrors/answer04.png"),
       },
     ],
   ];
@@ -56,21 +66,21 @@ export default function Page() {
         </button>
         <button onClick={() => handleButtonClick(1)}>
           <Image
-            src={game1}
+            src={game2}
             alt=""
             className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
         <button onClick={() => handleButtonClick(2)}>
           <Image
-            src={game1}
+            src={game3}
             alt=""
             className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />
         </button>
         <button onClick={() => handleButtonClick(3)}>
           <Image
-            src={game1}
+            src={game4}
             alt=""
             className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
           />

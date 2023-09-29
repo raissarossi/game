@@ -4,10 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import cofreImg from "./../../images/cofreGame/cofre.png";
 import cofreGif from "./../../images/cofreGame/cofre.gif";
-import abraCofre from "./../../images/cofreGame/abraCofre.png";
-import verificarButton from "./../../images/Verificar.png";
-import respostaButton from "./../../images/resposta.png";
-import respostaFinal from "../../images/cofreGame/respostaFinal.png";
+import abraCofre from "./../../images/titles/abraCofre.png";
+import verificarButton from "./../../images/buttons/verificar.png";
+import respostaButton from "./../../images/buttons/resposta.png";
 import Swal from "sweetalert2";
 
 export default function Page() {
