@@ -8,6 +8,7 @@ import abraCofre from "./../../images/titles/abraCofre.png";
 import verificarButton from "./../../images/buttons/verificar.png";
 import respostaButton from "./../../images/buttons/resposta.png";
 import Swal from "sweetalert2";
+import { URL } from "url";
 
 export default function Page() {
   type Question = {
@@ -67,18 +68,25 @@ export default function Page() {
         iconColor: "#2EBDD3",
         title: "Erro",
         text: "Resposta Incorreta!",
-        confirmButtonColor: "#2EBDD3",
+        confirmButtonText:"aaaaa",
+        confirmButtonColor: "#2EBDD3"
       });
       setResposta("");
     }
   };
   const showAnswer = () => {
     Swal.fire({
-      title: 'Sweet!',
-      text: 'Modal with a custom image.',
-      imageUrl: '/images/cofreGame/respostaFinal.png', // Caminho relativo à imagem
-      imageWidth: 400,
-      imageHeight: 200,
+      title:"Todas as respostas compõem datas especiais:\n🤍",
+      html: "<h2>06 - o dia que nos conhecemos pessoalmente</h2>"+
+      "<h2>12 - primeira vez que saímos</h2>"+
+      "<h2>26 - você conheceu meus pais</h2>"+
+      "<h2>27 - eu conheci seus pais</h2>"+
+      "<h2>08 - tudo isso no mês de agosto</h2>"+
+      "<h2>02 - nosso dia, dia que você me pediu em namoro</h2>"+
+      "<h2>09 - que foi no mês de setembro</h2>"+
+      "<h2>2023 - e por fim... o nosso ano</h2>",
+      confirmButtonText: 'Coisa boa!',
+      confirmButtonColor: "#2EBDD3",
     });
   }
 
@@ -116,13 +124,13 @@ export default function Page() {
         />
       </button>
       {currentQuestionIndex == 0 ?
-      <button className="" onClick={showAnswer}>
-        <Image
-          src={respostaButton}
-          alt=""
-          className="w-32 lg:w-36 hover:translate-y-1 mt-6 lg:mt-10"
+        <button className="" onClick={showAnswer}>
+          <Image
+            src={respostaButton}
+            alt=""
+            className="w-32 lg:w-36 hover:translate-y-1 mt-6 lg:mt-10"
           />
-      </button>
+        </button>
         :
         <></>}
     </div>
