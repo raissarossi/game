@@ -2,11 +2,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import cofreImg from "./../../images/cofre.png";
-import cofreGif from "./../../images/cofre.gif";
-import abraCofre from "./../../images/abraCofre.png";
+import cofreImg from "./../../images/cofreGame/cofre.png";
+import cofreGif from "./../../images/cofreGame/cofre.gif";
+import abraCofre from "./../../images/cofreGame/abraCofre.png";
 import verificarButton from "./../../images/Verificar.png";
 import respostaButton from "./../../images/resposta.png";
+import respostaFinal from "../../images/cofreGame/respostaFinal.png";
 import Swal from "sweetalert2";
 
 export default function Page() {
@@ -19,10 +20,6 @@ export default function Page() {
   // 2608 - my house
   // 2708 - his house
   const [questions, setQuestions] = useState<Question[]>([
-    {
-      question: require("./../../images/cofreGame/perguntaFinal.png"),
-      answer: "nossas datas",
-    }, //ok
     { question: require("./../../images/cofreGame/6.png"), answer: "6" }, //ok
     { question: require("./../../images/cofreGame/12.png"), answer: "12" }, //ok
     { question: require("./../../images/cofreGame/26.png"), answer: "26" }, //ok
@@ -31,6 +28,10 @@ export default function Page() {
     { question: require("./../../images/cofreGame/2.png"), answer: "2" }, //ok
     { question: require("./../../images/cofreGame/9.png"), answer: "9" }, //ok
     { question: require("./../../images/cofreGame/2023.png"), answer: "2023" }, //ok
+    {
+      question: require("./../../images/cofreGame/perguntaFinal.png"),
+      answer: "nossas datas",
+    }, //ok
   ]);
 
   const [resposta, setResposta] = useState("");
@@ -72,6 +73,15 @@ export default function Page() {
       setResposta("");
     }
   };
+  const showAnswer = () => {
+    Swal.fire({
+      title: 'Sweet!',
+      text: 'Modal with a custom image.',
+      imageUrl: '/images/cofreGame/respostaFinal.png', // Caminho relativo à imagem
+      imageWidth: 400,
+      imageHeight: 200,
+    });
+  }
 
   return (
     <div className="w-full bg-custom min-h-screen lg:h-screen flex flex-col items-center justify-center p-10">
@@ -106,13 +116,16 @@ export default function Page() {
           className="w-52 lg:w-56 hover:translate-y-1 mt-5 lg:mt-10"
         />
       </button>
-      <button className="" onClick={handleAnswer}>
+      {currentQuestionIndex == 0 ?
+      <button className="" onClick={showAnswer}>
         <Image
           src={respostaButton}
           alt=""
           className="w-32 lg:w-36 hover:translate-y-1 mt-6 lg:mt-10"
-        />
+          />
       </button>
+        :
+        <></>}
     </div>
   );
 }
