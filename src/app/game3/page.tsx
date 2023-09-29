@@ -1,158 +1,117 @@
-// ONLY YES GAME 
+// FIND ERRORS GAME
 "use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import simImg from "././../../images/simImg.png";
-import simGif from "././../../images/simGif.gif";
-import nao from "././../../images/naoImg.png";
+import resposta from "./../../images/resposta.png";
+import game1 from "./../../images/findErrors/correct1.jpg";
+import title from "./../../images/encontrarErros.png";
 
-const ButtonWithRandomMovement: React.FC = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isMouseNear, setIsMouseNear] = useState(false);
+export default function Page() {
+  const [imageList, setImageList] = useState<any[]>([]); // Inicializa a lista de imagens vazia
+  const [currentButton, setCurrentButton] = useState<number | null>(null); // Inicializa o botão atual como nulo
 
-  const [questions, setQuestions] = useState([
-    "Pergunta 1",
-    "Pergunta 2",
-    "Pergunta 3",
-    "Pergunta 4",
-    "Pergunta 5",
-    "Pergunta 6",
-    "Pergunta 7",
-    "Pergunta 8",
-    "Pergunta 9",
-    "Pergunta 10",
-  ]);
-  const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
-const [sim, setSim] = useState(simImg);
+  // Define as quatro listas de imagens
+  const imageLists: any[] = [
+      [
+        {
+        correct: require("./../../images/findErrors/correct1.jpg"),
+        error: require("./../../images/findErrors/error1.png"),
+        answer: require("./../../images/findErrors/answer1.png"),
+      }
+    ],
+    ,
+    [
+      {
+        correct: require("./../../images/findErrors/correct2.jpg"),
+        error: require("./../../images/findErrors/error2.png"),
+        answer: require("./../../images/findErrors/answer2.png"),
+      },
+    ],
+    [
+      {
+        correct: require("./../../images/findErrors/correct2.jpg"),
+        error: require("./../../images/findErrors/error2.png"),
+        answer: require("./../../images/findErrors/answer2.png"),
+      },
+    ],
+  ];
 
-useEffect(() => {
-  // Quando o componente for montado, sorteie a primeira pergunta
-  selectRandomQuestion();
-}, []);
-
-const selectRandomQuestion = () => {
-  // Filtra perguntas que já foram respondidas ou que são nulas
-  const unansweredQuestions = questions.filter((q) => q !== currentQuestion && q !== null);
-
-  if (unansweredQuestions.length === 0) {
-    alert("Quiz concluído!");
-    return;
-  }
-
-  // Sorteia uma pergunta aleatória das não respondidas
-  const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
-  const newQuestion = unansweredQuestions[randomIndex];
-
-  setCurrentQuestion(newQuestion);
-};
-
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-
-      const buttonX = position.x;
-      const buttonY = position.y;
-
-      // Calcula a distância entre o mouse e o botão
-      const distance = Math.sqrt(
-        Math.pow(mouseX - buttonX, 2) + Math.pow(mouseY - buttonY, 2)
-      );
-
-      // Se o mouse estiver perto do botão (defina a distância desejada)
-      const isNear = distance < 100;
-
-      setIsMouseNear(isNear);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [position]);
-
-  useEffect(() => {
-    // Move o botão para uma posição aleatória quando ele é montado
-    const randomPosition = () => {
-      const maxX = window.innerWidth - 100; // Largura da tela - largura do botão
-      const maxY = window.innerHeight - 100; // Altura da tela - altura do botão
-
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
-
-      setPosition({ x: newX, y: newY });
-    };
-
-    randomPosition();
-
-    // // Configura um intervalo para mover o botão a cada 1 segundo
-    const interval = setInterval(() => {
-      randomPosition();
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Move o botão para uma posição aleatória sempre que o mouse se aproximar
-    if (isMouseNear) {
-      const randomPosition = () => {
-        const maxX = window.innerWidth - 100;
-        const maxY = window.innerHeight - 100;
-
-        const newX = Math.random() * maxX;
-        const newY = Math.random() * maxY;
-
-        setPosition({ x: newX, y: newY });
-      };
-
-      randomPosition();
-    }
-  }, [isMouseNear]);
-
-  function AlertWrongButton() {
-    Swal.fire({
-      icon: "error",
-      iconColor: "#2EBDD3",
-      title: "Erro",
-      text: "Erro ao processar sua resposta, por favor tente novamente!",
-      confirmButtonColor: "#2EBDD3",
-    });
-  }
-  function AlertRightButton() {
-    setSim(simGif);
-    setTimeout(() => {
-      setSim(simImg);
-      selectRandomQuestion()
-    }, 1000);
-  }
+  const [imgAnswer, setImgAnswer] = useState(false);
+  const handleButtonClick = (buttonIndex: number) => {
+    setImgAnswer(false);
+    setImageList(imageLists[buttonIndex]);
+    setCurrentButton(buttonIndex);
+  };
 
   return (
-    <div className="flex justify-center items-center gap-10 h-screen w-full flex-col bg-custom">
-      <h1 className="text-white text-2xl lg:text-5xl">
-        {currentQuestion}
-      </h1>
-      <button onClick={AlertRightButton}>
-        <Image src={sim} alt="" width={150} height={150} />
-      </button>
-      <button
-        style={{
-          position: "absolute",
-          top: `${position.y}px`,
-          left: `${position.x}px`,
-          transition: "0.5s",
-        }}
-        onClick={AlertWrongButton}
-      >
-        <Image src={nao} alt="" width={150} height={150} />
+    <div className="w-full bg-custom min-h-screen lg:h-screen flex flex-col items-center justify-center gap-10 p-10">
+      <Image src={title} alt="" className="lg:max-w-lg" />
+      <div className="flex justify-center flex-wrap gap-6 p-6 lg:gap-14">
+        <button onClick={() => handleButtonClick(0)}>
+          <Image
+            src={game1}
+            alt=""
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
+          />
+        </button>
+        <button onClick={() => handleButtonClick(1)}>
+          <Image
+            src={game1}
+            alt=""
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
+          />
+        </button>
+        <button onClick={() => handleButtonClick(2)}>
+          <Image
+            src={game1}
+            alt=""
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
+          />
+        </button>
+        <button onClick={() => handleButtonClick(3)}>
+          <Image
+            src={game1}
+            alt=""
+            className="opacity-20 hover:opacity-90 rounded-full w-20 h-20"
+          />
+        </button>
+      </div>
+      <div className="">
+        {imageList.map((imageUrl, index) => (
+          <div
+            className={"flex flex-col lg:flex-row gap-10 w-full justify-center"}
+          >
+            <Image
+              key={index}
+              src={imageUrl.correct}
+              alt={`Image ${index}`}
+              className="w-56 lg:w-1/5"
+            />
+            {imgAnswer == true ? (
+              <Image
+                key={index}
+                src={imageUrl.answer}
+                alt={`Image ${index}`}
+                className="w-56 lg:w-1/5"
+              />
+            ) : (
+              <Image
+                key={index}
+                src={imageUrl.error}
+                alt={`Image ${index}`}
+                className="w-56 lg:w-1/5"
+              />
+            )}
+          </div>
+        ))}
+      </div>
+      <button className={""} onClick={() => setImgAnswer(!imgAnswer)}>
+        <Image
+          src={resposta}
+          alt=""
+          className="w-52 lg:w-56 hover:translate-y-1"
+        />
       </button>
     </div>
   );
-};
-
-export default ButtonWithRandomMovement;
+}

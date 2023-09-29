@@ -1,126 +1,158 @@
-// HANGMAN GAME
+// ONLY YES GAME 
 "use client";
-import React, { useState, useEffect } from "react";
-import defaultLetter from "./../../images/forca/default.png";
 import Image from "next/image";
-import forcaTitle from "./../../images/forca/forcaTitle.png";
-import verificarButton from "./../../images/Verificar.png";
-import resetButton from "./../../images/forca/resetButton.png";
+import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import simImg from "././../../images/simImg.png";
+import simGif from "././../../images/simGif.gif";
+import nao from "././../../images/naoImg.png";
 
-export default function ForcaGame() {
-  const word = "eu  te  amo  meu principe";
-  const [letter, setLetter] = useState("");
-  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-  const [numErrors, setNumErrors] = useState(0);
-  const maxErrors = 7;
-  const [gameOver, setGameOver] = useState(false);
+const ButtonWithRandomMovement: React.FC = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isMouseNear, setIsMouseNear] = useState(false);
 
-  const imageMappings: { [key: string]: string } = {
-    a: require("./../../images/forca/a.png"),
-    c: require("./../../images/forca/c.png"),
-    e: require("./../../images/forca/e.png"),
-    i: require("./../../images/forca/i.png"),
-    m: require("./../../images/forca/m.png"),
-    n: require("./../../images/forca/n.png"),
-    o: require("./../../images/forca/o.png"),
-    p: require("./../../images/forca/p.png"),
-    r: require("./../../images/forca/r.png"),
-    t: require("./../../images/forca/t.png"),
-    u: require("./../../images/forca/u.png"),
-  };
-  const imageHangmanMappings: { [key: string]: string } = {
-    0: require("./../../images/forca/forca1.png"),
-    1: require("./../../images/forca/forca2.png"),
-    2: require("./../../images/forca/forca3.png"),
-    3: require("./../../images/forca/forca4.png"),
-    4: require("./../../images/forca/forca5.png"),
-    5: require("./../../images/forca/forca6.png"),
-    6: require("./../../images/forca/forca7.png"),
-    7: require("./../../images/forca/die.gif"),
-  };
+  const [questions, setQuestions] = useState([
+    "Pergunta 1",
+    "Pergunta 2",
+    "Pergunta 3",
+    "Pergunta 4",
+    "Pergunta 5",
+    "Pergunta 6",
+    "Pergunta 7",
+    "Pergunta 8",
+    "Pergunta 9",
+    "Pergunta 10",
+  ]);
+  const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
+const [sim, setSim] = useState(simImg);
+
+useEffect(() => {
+  // Quando o componente for montado, sorteie a primeira pergunta
+  selectRandomQuestion();
+}, []);
+
+const selectRandomQuestion = () => {
+  // Filtra perguntas que já foram respondidas ou que são nulas
+  const unansweredQuestions = questions.filter((q) => q !== currentQuestion && q !== null);
+
+  if (unansweredQuestions.length === 0) {
+    alert("Quiz concluído!");
+    return;
+  }
+
+  // Sorteia uma pergunta aleatória das não respondidas
+  const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
+  const newQuestion = unansweredQuestions[randomIndex];
+
+  setCurrentQuestion(newQuestion);
+};
+
 
   useEffect(() => {
-    if (numErrors >= maxErrors) {
-      setGameOver(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const buttonX = position.x;
+      const buttonY = position.y;
+
+      // Calcula a distância entre o mouse e o botão
+      const distance = Math.sqrt(
+        Math.pow(mouseX - buttonX, 2) + Math.pow(mouseY - buttonY, 2)
+      );
+
+      // Se o mouse estiver perto do botão (defina a distância desejada)
+      const isNear = distance < 100;
+
+      setIsMouseNear(isNear);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [position]);
+
+  useEffect(() => {
+    // Move o botão para uma posição aleatória quando ele é montado
+    const randomPosition = () => {
+      const maxX = window.innerWidth - 100; // Largura da tela - largura do botão
+      const maxY = window.innerHeight - 100; // Altura da tela - altura do botão
+
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+
+      setPosition({ x: newX, y: newY });
+    };
+
+    randomPosition();
+
+    // // Configura um intervalo para mover o botão a cada 1 segundo
+    const interval = setInterval(() => {
+      randomPosition();
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Move o botão para uma posição aleatória sempre que o mouse se aproximar
+    if (isMouseNear) {
+      const randomPosition = () => {
+        const maxX = window.innerWidth - 100;
+        const maxY = window.innerHeight - 100;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        setPosition({ x: newX, y: newY });
+      };
+
+      randomPosition();
     }
-  }, [numErrors]);
+  }, [isMouseNear]);
 
-  const checkLetter = () => {
-    if (gameOver) return;
+  function AlertWrongButton() {
+    Swal.fire({
+      icon: "error",
+      iconColor: "#2EBDD3",
+      title: "Erro",
+      text: "Erro ao processar sua resposta, por favor tente novamente!",
+      confirmButtonColor: "#2EBDD3",
+    });
+  }
+  function AlertRightButton() {
+    setSim(simGif);
+    setTimeout(() => {
+      setSim(simImg);
+      selectRandomQuestion()
+    }, 1000);
+  }
 
-    const cleanedWord = word.replace(/\s/g, "");
-
-    if (!cleanedWord.includes(letter)) {
-      setNumErrors(numErrors + 1);
-    }
-
-    for (const char of cleanedWord) {
-      if (char === letter) {
-        setGuessedLetters([...guessedLetters, char]);
-      }
-    }
-
-    setLetter("");
-  };
-
-  
-  const reset = () => {
-    setGameOver(false);
-    setLetter("");
-    setGuessedLetters([]);
-    setNumErrors(0);
-  };
   return (
-    <div className="w-full bg-custom min-h-screen lg:h-screen flex flex-col items-center justify-center gap-20">
-      <Image src={forcaTitle} alt="" className="p-14 " />
-      <Image src={imageHangmanMappings[numErrors]} alt="" className="w-32 h-32 lg:w-64 lg:h-64 lg:-my-16" />
-      <div className="flex flex-wrap justify-center lg:max-w-5xl">
-        {word.split("").map((char, index) => (
-          <div key={index}>
-            {/\s/.test(char) ? (
-              <div className="w-3 h-1 "/> 
-            ) : (
-              <Image
-                src={
-                  guessedLetters.includes(char)
-                    ? imageMappings[char]
-                    : defaultLetter
-                }
-                alt={char}
-                className="h-6 w-5 m-1 lg:h-20 lg:w-20 lg:mt-5"
-              />
-            )}
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-col justify-center items-center">
-        <input
-          type="text"
-          maxLength={1}
-          value={letter}
-          onChange={(e) => setLetter(e.target.value.toLowerCase())}
-          className="p-2 w-72"
-        />
-        <div className="flex">
-          <button onClick={checkLetter} className="flex justify-center">
-          <Image
-            src={verificarButton}
-            alt=""
-            className="w-40 lg:w-48 hover:translate-y-1 mt-5 lg:mt-10"
-          />
-          </button>
-          {numErrors == 7 || gameOver == true ?
-          <button onClick={reset} className="flex justify-center">
-          <Image
-            src={resetButton}
-            alt=""
-            className="w-40 lg:w-48 hover:translate-y-1 mt-5 lg:mt-10"
-            />
-          </button>
-          :
-          <></>}
-        </div>
-      </div>
+    <div className="flex justify-center items-center gap-10 h-screen w-full flex-col bg-custom">
+      <h1 className="text-white text-2xl lg:text-5xl">
+        {currentQuestion}
+      </h1>
+      <button onClick={AlertRightButton}>
+        <Image src={sim} alt="" width={150} height={150} />
+      </button>
+      <button
+        style={{
+          position: "absolute",
+          top: `${position.y}px`,
+          left: `${position.x}px`,
+          transition: "0.5s",
+        }}
+        onClick={AlertWrongButton}
+      >
+        <Image src={nao} alt="" width={150} height={150} />
+      </button>
     </div>
   );
-}
+};
+
+export default ButtonWithRandomMovement;
