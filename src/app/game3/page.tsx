@@ -1,4 +1,3 @@
-// FIND ERRORS GAME
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -10,19 +9,18 @@ import game4 from "./../../images/findErrors/correct04.png";
 import resposta from "./../../images/buttons/resposta.png";
 
 export default function Page() {
-  const [imageList, setImageList] = useState<any[]>([]); // Inicializa a lista de imagens vazia
-  const [currentButton, setCurrentButton] = useState<number | null>(null); // Inicializa o botão atual como nulo
+  const [imageList, setImageList] = useState<any[]>([]); // Initialize as an empty array
+  const [currentButton, setCurrentButton] = useState<number | null>(null); // Initialize the current button as null
 
-  // Define as quatro listas de imagens
+  // Define the four lists of images
   const imageLists: any[] = [
-      [
-        {
+    [
+      {
         correct: require("./../../images/findErrors/correct01.png"),
         error: require("./../../images/findErrors/error01.png"),
         answer: require("./../../images/findErrors/answer01.png"),
-      }
+      },
     ],
-    ,
     [
       {
         correct: require("./../../images/findErrors/correct02.jpg"),
@@ -90,23 +88,21 @@ export default function Page() {
         {imageList.map((imageUrl, index) => (
           <div
             className={"flex flex-col lg:flex-row gap-10 w-full justify-center"}
+            key={index} // Moved key to the outer div
           >
             <Image
-              key={index}
               src={imageUrl.correct}
               alt={`Image ${index}`}
               className="w-56 lg:w-1/5"
             />
             {imgAnswer == true ? (
               <Image
-                key={index}
                 src={imageUrl.answer}
                 alt={`Image ${index}`}
                 className="w-56 lg:w-1/5"
               />
             ) : (
               <Image
-                key={index}
                 src={imageUrl.error}
                 alt={`Image ${index}`}
                 className="w-56 lg:w-1/5"

@@ -7,6 +7,7 @@ import simImg from "./../../images/buttons/simImg.png";
 import simGif from "./../../images/buttons/simGif.gif";
 import naoImg from "./../../images/buttons/naoImg.png";
 import naoGif from "./../../images/buttons/naoGif.gif";
+import car from "./../../images/car.png"
 
 export default function Quiz() {
   type Question = {
@@ -14,16 +15,22 @@ export default function Quiz() {
     answer: string;
   };
   const [questions, setQuestions] = useState([
-    { question: "Pergunta 1", answer: "sim" },
-    { question: "Pergunta 2", answer: "nao" },
-    { question: "Pergunta 3", answer: "sim" },
-    { question: "Pergunta 4", answer: "nao" },
-    { question: "Pergunta 5", answer: "sim" },
-    { question: "Pergunta 6", answer: "nao" },
-    { question: "Pergunta 7", answer: "sim" },
-    { question: "Pergunta 8", answer: "nao" },
-    { question: "Pergunta 9", answer: "sim" },
-    { question: "Pergunta 10", answer: "nao" },
+    { question: "(30/09/2023) A diferença entre Perez e Hamilton é maior que 30 pontos?", answer: "sim" },
+    { question: "A Rai prefere ler romance à assistir?", answer: "sim" },
+    { question: "Na temporada de 2022, 	George Russell ficou em 5º posição no hanking?", answer: "nao" },
+    { question: "A Rai é sagitariana?", answer: "sim" },
+    { question: "São Paulo ganhou 30/45 partidas em 2023?", answer: "nao" },
+    { question: "Na corrida no Brasil em 2021, Vestappen ficou com menos de 8' de diferença em relação à Hamilton?", answer: "nao" },
+    { question: "Entre 2012 e 2020, a Mercedes ganhou consecutivamente campeonatos de pilotos e construtores?", answer: "nao" },
+    { question: "Comida favorita da Rai é couve da vó dela?", answer: "sim" },
+    { question: "O São Paulo teve mais empates do que derrotas em 2023?", answer: "nao" },
+    { question: "(30/09/2023) Em 22º lugar está o Daniel Ricciardo?", answer: "sim" },
+    { question: "a Rai fez tecido acrobático dos 5 aos 16 anos de idade?", answer: "sim" },
+    { question: "As influências que a Rai mais pegou da tia foi o amor por relógios, botas e óculos de sol?", answer: "nao" },
+    { question: "O estilo musical preferido da Rai é Rock?", answer: "sim" },
+    { question: "No ramo de tecnologia, a Rai prefere mexer com base de dados?", answer: "nao" },
+    { question: "", answer: "" },
+    { question: "", answer: "" },
   ]);
 
   const [sim, setSim] = useState(simImg);
@@ -81,10 +88,15 @@ export default function Quiz() {
   };
 
   return (
-    <div className="w-full bg-custom h-screen lg:h-screen flex items-center justify-center">
+    <div className="w-full bg-custom h-screen lg:h-screen flex flex-col items-center justify-evenly">
+      {/* <Image src={title} alt="sim" className="max-w-3xl"/> */}
+      <div>
+        <h1 className="text-white text-xl lg:text-4xl text-center m-5">Vamos ver se você realmente gosta dessas coisas:</h1>
+        <h3 className="text-white text-xs lg:text-lg text-center m-5">obs: esse jogo está em loop aleatório</h3>
+      </div>
       {currentQuestion && (
-        <div className=" flex flex-col items-center gap-20">
-          <h1 className="text-white text-2xl lg:text-5xl">
+        <div className=" flex flex-col items-center gap-20 w-10/12">
+          <h1 className="text-white text-center text-xl lg:text-1xl">
             {currentQuestion.question}
           </h1>
           <div className="flex gap-10">
@@ -97,6 +109,8 @@ export default function Quiz() {
           </div>
         </div>
       )}
+      <Image src={car} alt="nao" className="w-9/12 -mb-28" />
+      <h1 className="text-xs">obs: ficou lindo né? nem parece que fique 3 horas fazendo esse carrinho</h1>
     </div>
   );
 }
