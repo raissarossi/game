@@ -124,7 +124,7 @@ export default function Page() {
           className="w-52 lg:w-56 hover:translate-y-1 mt-5 lg:mt-10"
         />
       </button>
-      {currentQuestionIndex == 0 ?
+      {currentQuestionIndex == 8 ?
         <button className="" onClick={showAnswer}>
           <Image
             src={respostaButton}
