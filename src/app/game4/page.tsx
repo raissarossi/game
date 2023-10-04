@@ -68,7 +68,7 @@ export default function Page() {
         iconColor: "#2EBDD3",
         title: "Erro",
         text: "Resposta Incorreta!",
-        confirmButtonText:"aaaaa",
+        confirmButtonText:"Tentar novamente",
         confirmButtonColor: "#2EBDD3"
       });
       setResposta("");
@@ -84,7 +84,8 @@ export default function Page() {
       "<h2>08 - tudo isso no mês de agosto</h2>"+
       "<h2>02 - nosso dia, dia que você me pediu em namoro</h2>"+
       "<h2>09 - que foi no mês de setembro</h2>"+
-      "<h2>2023 - e por fim... o nosso ano</h2>",
+      "<h2>2023 - e por fim... o nosso ano</h2>"+
+      `<h2>RESPOSTA: "nossas datas"</h2>`,
       confirmButtonText: 'Coisa boa!',
       confirmButtonColor: "#2EBDD3",
     });
@@ -123,7 +124,7 @@ export default function Page() {
           className="w-52 lg:w-56 hover:translate-y-1 mt-5 lg:mt-10"
         />
       </button>
-      {currentQuestionIndex == 8 ?
+      {currentQuestionIndex == 0 ?
         <button className="" onClick={showAnswer}>
           <Image
             src={respostaButton}
