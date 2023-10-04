@@ -12,16 +12,9 @@ const ButtonWithRandomMovement: React.FC = () => {
   const [isMouseNear, setIsMouseNear] = useState(false);
 
   const [questions, setQuestions] = useState([
-    "Pergunta 1",
-    "Pergunta 2",
-    "Pergunta 3",
-    "Pergunta 4",
-    "Pergunta 5",
-    "Pergunta 6",
-    "Pergunta 7",
-    "Pergunta 8",
-    "Pergunta 9",
-    "Pergunta 10",
+    "Corinthians é melhor que o São Paulo?",
+    "Gabriel é mais fedido que a Raíssa?",
+    "Raíssa é uma motorista excelente?",
   ]);
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
 const [sim, setSim] = useState(simImg);
